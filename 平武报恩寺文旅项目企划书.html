@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>让世界看见平武 · 报恩寺文旅复兴计划</title>
+<style>
+  :root {
+    --c-primary: #1a3a4a;
+    --c-secondary: #8b5a2b;
+    --c-accent: #c9a227;
+    --c-light: #f8f4ef;
+    --c-cream: #faf6ed;
+    --c-warm: #e8dfd0;
+    --c-text: #333;
+    --c-text-light: #666;
+    --c-white: #fff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "STSong", serif;
+    background: var(--c-light);
+    color: var(--c-text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* 封面 */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--c-primary) 0%, #2d5566 50%, #1a3a4a 100%);
+    color: var(--c-white);
+    text-align: center;
+    padding: 60px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 60% 40%, rgba(201,162,39,0.08) 0%, transparent 50%);
+  }
+  .cover-deco {
+    font-size: 72px;
+    letter-spacing: 24px;
+    opacity: 0.15;
+    font-family: "STKaiti", "KaiTi", serif;
+    position: absolute;
+    top: 10%;
+    writing-mode: vertical-rl;
+  }
+  .cover h1 {
+    font-size: clamp(32px, 5.5vw, 56px);
+    font-weight: 700;
+    letter-spacing: 8px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .vision {
+    font-size: clamp(18px, 3vw, 28px);
+    letter-spacing: 10px;
+    color: var(--c-accent);
+    margin-bottom: 32px;
+    font-family: "STKaiti", "KaiTi", serif;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .subtitle {
+    font-size: clamp(15px, 2.2vw, 20px);
+    letter-spacing: 4px;
+    opacity: 0.75;
+    margin-bottom: 8px;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+    line-height: 2;
+  }
+  .cover .sub-info {
+    font-size: 14px;
+    opacity: 0.6;
+    letter-spacing: 2px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-line {
+    width: 80px;
+    height: 2px;
+    background: var(--c-accent);
+    margin: 30px auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 章节通用 */
+  .section {
+    padding: 70px 30px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-weight: 700;
+    color: var(--c-primary);
+    margin-bottom: 36px;
+    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--c-secondary);
+    color: var(--c-white);
+    border-radius: 8px;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* 公司介绍 */
+  .company-card {
+    background: linear-gradient(145deg, var(--c-cream), var(--c-light));
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--c-accent);
+  }
+  .company-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--c-primary);
+    margin-bottom: 16px;
+  }
+  .company-desc {
+    color: var(--c-text-light);
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .partner-tag {
+    background: var(--c-white);
+    border: 1px solid var(--c-warm);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--c-text);
+    text-align: center;
+  }
+  .partner-highlight {
+    border-color: var(--c-gold);
+    background: linear-gradient(135deg, #fdfbf7, #f9f3e3);
+    line-height: 1.5;
+  }
+  .partner-sub {
+    display: block;
+    font-size: 11px;
+    color: var(--c-text-light);
+    margin-top: 2px;
+  }
+
+  /* ===== 全局水印 ===== */
+  body::before {
+    content:"四川丰火传媒";
+    position: fixed; top:50%; left:50%;
+    transform: translate(-50%,-50%) rotate(-30deg);
+    font-size: 80px; font-weight:900;
+    color: rgba(139,69,19,0.045); letter-spacing:24px;
+    white-space: nowrap; pointer-events:none;
+    z-index:99999; user-select:none;
+    -webkit-user-select:none; -webkit-touch-callout:none;
+  }
+  /* 防止水印被截图工具去除 */
+  @media print {
+    body::before { display:block !important; color: rgba(139,69,19,0.08) !important; }
+  }
+
+  /* ===== 媒体矩阵（公司简介用）===== */
+  .media-matrix { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin:26px 0 10px; }
+  @media(max-width:960px) { .media-matrix { grid-template-columns:1fr; } }
+  .media-item { background:#fff; border-radius:14px; padding:22px 18px; box-shadow:0 2px 12px rgba(0,0,0,0.04); transition:transform .25s ease; border-top:4px solid; }
+  .media-item:hover { transform:translateY(-5px); box-shadow:0 8px 28px rgba(139,0,0,0.12); }
+  .media-xhs { border-top-color:#ff2442; }
+  .media-dy { border-top-color:#000; }
+  .media-dp { border-top-color:#f6b100; }
+
+  .media-item h5 { margin:0 0 14px; font-size:17px; display:flex; align-items:center; gap:8px; font-weight:800; line-height:1.3; }
+  .media-xhs h5 { color:#ff2442; }  .media-dy h5 { color:#000; }  .media-dp h5 { color:#e65100; }
+
+  .media-item ul { padding:0; margin:0; list-style:none; }
+  .media-item li { font-size:13px; color:var(--c-text-light); padding:5px 0; line-height:1.7; position:relative; padding-left:16px; }
+  .media-item li::before { content:"▸"; position:absolute; left:0; font-size:10px; top:6px; opacity:.7; }
+  .media-cred { display:inline-block; background:var(--c-cream); border-radius:6px; padding:3px 8px; font-size:11px; color:#8B4513; margin-top:4px; font-weight:600; }
+
+  /* 天时地利 - 左右布局 */
+  .tianshi-layout { display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap; }
+  .tianshi-left { flex:1; min-width:380px; }
+  .tianshi-right { flex:0 0 340px; min-width:300px; }
+
+  .route-map {
+    width:100%; aspect-ratio:4/5;
+    background:linear-gradient(170deg,#1a365d 0%,#2d4a6f 35%,#3d6a91 70%,#5a8bb5 100%);
+    border-radius:16px; position:relative;
+    overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.15);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:#fff;
+  }
+  .route-map-title { font-size:20px; font-weight:800; text-align:center; margin-bottom:16px; letter-spacing:3px; }
+  .route-line { width:80%; height:4px; background:linear-gradient(90deg,#DAA520,#FFD700); border-radius:2px; margin-bottom:20px; position:relative; }
+  .route-point { text-align:center; position:relative; z-index:2; margin:10px 0; }
+  .route-dot { width:18px;height:18px;border-radius:50%;background:#FFD700;display:inline-block;margin-right:8px;box-shadow:0 0 12px rgba(255,215,0,.6);vertical-align:middle; }
+  .route-label { font-size:15px;font-weight:700; letter-spacing:2px; }
+  .route-sub { font-size:11px;opacity:.75;margin-top:2px; }
+  .route-arrow-down { font-size:24px;color:#FFD700;margin:6px 0;opacity:.7; }
+  .route-badge { background:rgba(215,0,0,.85);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;margin-top:16px;letter-spacing:2px;box-shadow:0 4px 16px rgba(0,0,0,.3);border:1px solid #DAA520;}
+
+  /* 案例图片画廊 */
+  .case-gallery {
+    margin-bottom: 20px;
+  }
+  .case-gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  .case-gallery img:first-child {
+    border-radius: 12px 12px 0 0;
+  }
+  .case-gallery img + img {
+    border-top: 4px solid #fff;
+  }
+  .case-gallery-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: #fff;
+  }
+  .case-gallery-row img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  /* 案例卡片 */
+  .case-grid {
+    display: grid;
+    gap: 32px;
+    margin-top: 8px;
+  }
+  .case-card {
+    background: var(--c-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  .case-header {
+    background: linear-gradient(135deg, var(--c-primary), #2d5566);
+    color: var(--c-white);
+    padding: 24px 28px;
+  }
+  .case-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .case-header span {
+    font-size: 13px;
+    opacity: 0.7;
+  }
+  .case-body {
+    padding: 24px 28px;
+  }
+  .case-body ul {
+    list-style: none;
+    padding: 0;
+  }
+  .case-body li {
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 15px;
+    color: var(--c-text-light);
+  }
+  .case-body li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: var(--c-accent);
+    font-size: 10px;
+    top: 13px;
+  }
+
+  /* 报恩寺亮点 */
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .hl-item-wide { grid-column: 1 / -1; }
+  .hl-item {
+    background: var(--c-white);
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    border-top: 3px solid var(--c-accent);
+  }
+  .hl-image-showcase {
+    width:100%;
+    height:auto;
+    min-height:360px;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+  }
+  .showcase-main { width:100%;height:100%; }
+  .showcase-placeholder { width:100%;min-height:360px;display:flex;align-items:center;justify-content:center; }
+  
+  .hl-item h4 {
+    font-size: 17px;
+    color: var(--c-primary);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .hl-item p {
+    font-size: 14px;
+    color: var(--c-text-light);
+    line-height: 1.7;
+  }
+  .hl-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--c-accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* 文创产品网格 */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 8px;
+  }
+  .product-card {
+    background: var(--c-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 32px rgba(139,0,0,0.15);
+  }
+
+  .product-visual {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  /* 雪糕 */
+  .product-icecream {
+    background: linear-gradient(180deg, #ffe4ec 0%, #ffd1dc 50%, #f8b4c4 100%);
+  }
+  .icecream-shape {
+    width: 80px; height: 120px;
+    background: linear-gradient(135deg, #fff 0%, #ffe4ec 60%, #f8b4c4 100%);
+    border-radius: 8px 8px 40px 40px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+  .icecream-shape::before {
+    content:"报恩";
+    position:absolute; top:35%; left:50%;
+    transform:translateX(-50%);
+    font-size:18px; font-weight:bold;
+    color:#8B0000; letter-spacing:4px;
+  }
+  .icecream-shape::after {
+    content:""; position:absolute; bottom:-30px; left:50%;
+    transform:translateX(-50%);
+    width:0; height:0;
+    border-left:22px solid transparent;
+    border-right:22px solid transparent;
+    border-top:36px solid #D4A574;
+  }
+
+  /* 折扇 */
+  .product-fan {
+    background: linear-gradient(135deg, #fdfbf7 0%, #f5e6d3 100%);
+  }
+  .fan-shape {
+    width: 140px; height: 140px;
+    background: conic-gradient(from 200deg, #D4A574 0deg, #8B4513 25deg, transparent 26deg, transparent 70deg, #D4A574 71deg, #8B4513 95deg, transparent 96deg, transparent 130deg, #D4A574 131deg, #8B4513 155deg, transparent 156deg);
+    border-radius: 50% 50% 0 0;
+    clip-path: polygon(50% 95%, 0 0, 100% 0);
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .fan-shape::before {
+    content:"龍"; position:absolute; top:38%; left:50%;
+    transform:translate(-50%, -50%) rotate(-10deg);
+    font-size:28px; font-weight:900;
+    color:#8B0000; opacity:0.7;
+    font-family:"KaiTi", "STKaiti", serif;
+  }
+
+  /* 祈福牌 */
+  .product-plaque {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+  .plaque-shape {
+    width: 90px; height: 120px;
+    background: linear-gradient(135deg, #8B4513 0%, #D4A574 50%, #8B4513 100%);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+    border: 2px solid #DAA520;
+  }
+  .plaque-shape::before {
+    content:"祈福"; position:absolute; top:30%; left:50%;
+    transform:translateX(-50%);
+    font-size:20px; font-weight:bold;
+    color:#FFD700; writing-mode:vertical-lr;
+    letter-spacing:6px; font-family:"KaiTi","STKaiti",serif;
+  }
+  .plaque-shape::after {
+    content:"🐉"; position:absolute; bottom:12px; left:50%;
+    transform:translateX(-50%); font-size:20px;
+  }
+
+  /* 盲盒 */
+  .product-blindbox {
+    background: linear-gradient(135deg, #8B0000 0%,#c0392b 50%, #e74c3c 100%);
+  }
+  .blindbox-shape {
+    width: 110px; height: 100px;
+    background: linear-gradient(145deg, #8B0000, #a93226);
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(139,0,0,0.4), inset 0 2px 0 rgba(255,255,255,0.15);
+    border: 2px solid #DAA520;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .blindbox-shape::before {
+    content:"?"; font-size:48px; font-weight:900;
+    color:#FFD700; text-shadow:0 2px 8px rgba(0,0,0,0.5);
+  }
+  .blindbox-shape::after {
+    content:"大明六绝"; position:absolute; bottom:-24px;
+    left:50%; transform:translateX(-50%);
+    font-size:11px; color:#fff; white-space:nowrap;
+    background:rgba(139,0,0,0.9); padding:2px 10px; border-radius:10px;
+  }
+
+  /* 研学包 */
+  .product-studykit {
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #5D6D7E 100%);
+  }
+  .studykit-shape {
+    width: 120px; height: 90px;
+    background: linear-gradient(135deg, #F5DEB3 0%, #DEB887 50%, #D2B48C 100%);
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    border: 3px solid #8B4513;
+  }
+  .studykit-shape::before {
+    content:"营造"; position:absolute; top:25%; left:50%;
+    transform:translateX(-50%); font-size:20px; font-weight:900;
+    color:#8B4513; font-family:"KaiTi","STKaiti",serif;
+  }
+  .studykit-shape::after {
+    content:"小小营造师"; position:absolute; bottom:-22px;
+    left:50%; transform:translateX(-50%);
+    font-size:11px; color:#fff; white-space:nowrap;
+    background:rgba(44,62,80,0.9); padding:2px 10px; border-radius:10px;
+  }
+
+  .product-label {
+    position: absolute; bottom: 10px;
+    left: 50%; transform: translateX(-50%);
+    font-size: 13px; font-weight: 700;
+    color: var(--c-primary); background: rgba(255,255,255,0.85);
+    padding: 4px 14px; border-radius: 12px;
+    backdrop-filter: blur(4px);
+  }
+  .product-card > h4 {
+    font-size: 17px; color: var(--c-primary); padding: 16px 20px 8px;
+    margin: 0; font-weight: 800; line-height: 1.4;
+  }
+  .product-card > p {
+    font-size: 13.5px; color: var(--c-text-light); line-height: 1.75;
+    padding: 0 20px 16px; margin: 0;
+  }
+
+  /* 框架思路 */
+  .framework-box {
+    background: var(--c-cream);
+    border-radius: 16px;
+    padding: 36px;
+    margin-top: 12px;
+  }
+  .fw-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 28px;
+    align-items: flex-start;
+  }
+  .fw-label {
+    width: 90px;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--c-secondary);
+    font-size: 15px;
+    padding-top: 4px;
+  }
+  .fw-content {
+    flex: 1;
+    font-size: 15px;
+    color: var(--c-text-light);
+  }
+  .fw-content strong {
+    color: var(--c-primary);
+  }
+  .fw-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .fw-tag {
+    background: var(--c-white);
+    border: 1px solid var(--c-warm);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--c-primary);
+  }
+
+  /* 三步驱动 */
+  .drive-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .drive-step {
+    background: var(--c-white);
+    border-radius: 14px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.04);
+    position: relative;
+  }
+  .drive-step .step-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--c-primary), #2d5566);
+    color: var(--c-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 auto 16px;
+    font-weight: 700;
+  }
+  .drive-step h4 {
+    font-size: 17px;
+    color: var(--c-primary);
+    margin-bottom: 10px;
+  }
+  .drive-step p {
+    font-size: 14px;
+    color: var(--c-text-light);
+    line-height: 1.7;
+  }
+
+  /* 效益 */
+  .benefit-list {
+    list-style: none;
+  }
+  .benefit-list li {
+    background: var(--c-white);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    border-left: 3px solid var(--c-accent);
+    font-size: 15px;
+    color: var(--c-text);
+  }
+  .benefit-list li strong {
+    color: var(--c-secondary);
+    font-size: 16px;
+  }
+
+  /* 结尾 */
+  /* 结语——火焰鎏金主题 */
+  .closing {
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,165,0,.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(255,69,0,.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 80% 80%, rgba(218,165,32,.12) 0%, transparent 45%),
+      linear-gradient(170deg, #1a0a00 0%, #2d1100 35%, #4a1800 60%, #2d1100 85%, #1a0a00 100%);
+    color: var(--c-white);
+    text-align: center;
+    padding: 90px 30px 80px;
+  }
+  .closing::before {
+    content:"";
+    position:absolute; top:-120px; left:50%;
+    transform:translateX(-50%);
+    width:500px; height:400px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,140,0,.3) 0%, rgba(255,69,0,.15) 40%, transparent 70%);
+    filter:blur(60px);
+    pointer-events:none; animation:fireGlow 4s ease-in-out infinite alternate;
+  }
+  @keyframes fireGlow { from{opacity:.6;transform:translateX(-50%) scale(.95);} to{opacity:1;transform:translateX(-50%) scale(1.05);} }
+  .closing h2 {
+    font-size: clamp(28px, 5vw, 44px);
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    background: linear-gradient(180deg, #FFD700, #FFA500, #FF6B00);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 24px rgba(255,165,0,.4));
+    animation:goldPulse 3s ease-in-out infinite alternate;
+    position:relative; z-index:1;
+  }
+  @keyframes goldPulse { from{filter:drop-shadow(0 0 16px rgba(255,165,0,.3));} to{filter:drop-shadow(0 0 32px rgba(255,200,0,.6));} }
+  .closing p {
+    font-size: clamp(14px, 1.7vw, 17px);
+    opacity: 0.9;
+    line-height: 2.15;
+    max-width: 650px;
+    margin: 0 auto;
+    color: #f5e6d3;
+    position:relative; z-index:1;
+  }
+  .closing strong {
+    display:inline-block;
+    font-size: clamp(19px, 3vw, 27px);
+    color:#FFD700;
+    font-weight:900;
+    letter-spacing:3px;
+    padding:10px 32px;
+    margin-top:18px;
+    background:linear-gradient(135deg,rgba(139,0,0,.5),rgba(180,60,0,.4));
+    border:2px solid rgba(255,215,0,.5);
+    border-radius:16px;
+    box-shadow:0 0 36px rgba(255,140,0,.25), inset 0 1px 0 rgba(255,215,0,.15);
+    animation:borderGlow 2.5s ease-in-out infinite alternate;
+  }
+  @keyframes borderGlow { from{border-color:rgba(255,215,0,.35);box-shadow:0 0 24px rgba(255,140,0,.15);} to{border-color:rgba(255,215,0,.75);box-shadow:0 0 48px rgba(255,160,0,.4),inset 0 1px 0 rgba(255,215,0,.2);} }
+
+  @media (max-width: 900px) {
+
+  @media (max-width: 900px) {
+    .tianshi-layout { flex-direction: column; }
+    .tianshi-right { flex: none; width: 100%; max-width: 400px; margin: 0 auto; }
+  }
+  @media (max-width: 600px) {
+    .section { padding: 44px 20px; }
+    .fw-row { flex-direction: column; gap: 12px; }
+    .fw-label { width: auto; }
+    .company-card { padding: 24px; }
+    .media-matrix { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 封面 ==================== -->
+<div class="cover">
+  <span class="cover-deco">九寨门户 涪江源头</span>
+  <h1>让世界看见平武</h1>
+  <div class="cover-line"></div>
+  <div class="subtitle">报恩寺文旅项目 · 创新发展规划</div>
+  <div class="subtitle">以一座深山故宫，点亮川西秘境</div>
+  <div class="sub-info">四川丰火传媒有限公司 | 2026年</div>
+</div>
+
+<!-- ==================== 一、公司介绍 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">01</span>关于丰火传媒</div>
+
+  <div class="company-card">
+    <div class="company-name">四川丰火传媒有限公司</div>
+    <p class="company-desc">
+      四川丰火传媒有限公司，总部位于成都，是一家专注于<strong>品牌全案营销、文旅IP打造与持续运营</strong>的全案媒体公司。<strong>年营业流水超1,500万元</strong>，团队深耕餐饮连锁、商业地产、文旅景区三大领域，具备从战略规划到落地执行的完整服务能力。我们不只是"做活动""做推广"，更擅长将一个地方的文化资源转化为可持续的市场化项目——<strong>让流量变留量，让打卡变口碑，让一次消费变长期产业</strong>。
+    </p>
+    <p style="font-size:15px;color:var(--c-text);margin-bottom:8px;"><strong>▸ 服务领域覆盖：</strong></p>
+    <ul style="list-style:none;padding-left:8px;">
+      <li style="padding:4px 0;font-size:14px;color:var(--c-text-light);">● 餐饮连锁品牌：大众点评全案运营、抖音本地生活、门店评分体系搭建</li>
+      <li style="padding:4px 0;font-size:14px;color:var(--c-text-light);● 文旅景区：IP策划、内容营销、节庆活动、研学体系设计</li>
+      <li style="padding:4px 0;font-size:14px;color:var(--c-text-light);● 商业地产：非标商业场景营造、招商运营、城市礼物文创开发</li>
+    </ul>
+
+    <p style="font-size:15px;color:var(--c-text);margin-top:20px;margin-bottom:8px;"><strong>▸ 部分合作品牌 / 项目：</strong></p>
+    <div class="partner-grid">
+      <div class="partner-tag partner-highlight">大院河·仙鱼莊<br><span class="partner-sub">中国庭院派火锅 · 全球连锁</span></div>
+      <div class="partner-tag partner-highlight">蜀镇老火锅<br><span class="partner-sub">全球大连锁品牌</span></div>
+      <div class="partner-tag partner-highlight">享月汤皇<br><span class="partner-sub">全球连锁 · 已点亮新加坡蓝图</span></div>
+      <div class="partner-tag partner-highlight">京祥和轩铜锅涮肉<br><span class="partner-sub">供应链覆盖故宫南门涮肉等北京头部品牌</span></div>
+      <div class="partner-tag partner-highlight">都氏家 DUSJOY<br><span class="partner-sub">成都知名餐饮品牌</span></div>
+      <div class="partner-tag partner-highlight">300杯<br><span class="partner-sub">自有品牌矩阵</span></div>
+      <div class="partner-tag">新柯瑞集团 · 351家门店</div>
+      <div class="partner-tag">麓湖 CPI 岛（近期）</div>
+      <div class="partner-tag">古滇名城文旅项目</div>
+      <div class="partner-tag">四平铁东非遗展示馆</div>
+      <div class="partner-tag">洛带水龙节</div>
+    </div>
+
+    <!-- 可导入品牌资源池（报恩寺项目招商备选） -->
+    <div style="margin-top:32px;padding:20px;background:#f8f5f0;border-radius:12px;border-left:4px solid var(--c-gold);">
+      <p style="font-size:15px;color:var(--c-text);margin-bottom:12px;"><strong>🤝 可导入品牌资源池（报恩寺项目招商备选）</strong></p>
+      <p style="font-size:14px;color:var(--c-text-light);line-height:1.9;">
+        以上餐饮品牌均为丰火传媒战略性合作伙伴，具备全国连锁运营能力，可作为报恩寺文旅街区<strong>首批入驻品牌</strong>。其中大院河·仙鱼莊、蜀镇老火锅、享月汤皇均为<strong>全球化布局的连锁餐饮企业</strong>，享月汤皇已进军新加坡市场；京祥和轩背后供应链更供应了北京绝大多数头部涮肉品牌（含故宫前门南门涮肉）。这些品牌的引入将直接提升街区商业品质与游客消费体验。
+      </p>
+    </div>
+
+    <!-- 全案媒体能力矩阵 -->
+    <p style="font-size:16px;color:var(--c-text);margin:32px 0 16px;"><strong>▸ 核心媒体运营体系：</strong>全案覆盖 · 自有团队 · 端到端交付</p>
+    <div class="media-matrix">
+
+      <!-- 小红书 -->
+      <div class="media-item media-xhs">
+        <h5><span style="font-size:22px;">📕</span> 小红书 · 全案运营体系</h5>
+        <ul>
+          <li><strong>蓝V账号代运营</strong>：从0到1搭建品牌号矩阵，笔记内容策划、发布排期、粉丝互动、数据复盘，一站式托管</li>
+          <li><strong>达人宣发投放</strong>：KOL/KOC金字塔式种草——头部达人破圈引流 + 腰部达人深度测评 + 底部素人真实口碑铺量</li>
+          <li><strong>搜索SEO优化</strong>：关键词布局 + 话题矩阵打造，抢占品类搜索排名首位</li>
+          <li><strong>直播带货</strong>：品牌自播 + 达人专场，品效合一转化闭环</li>
+        </ul>
+        <span class="media-cred">✦ 已服务餐饮/文旅品牌50+</span>
+      </div>
+
+      <!-- 抖音 -->
+      <div class="media-item media-dy">
+        <h5><span style="font-size:22px;">🎵</span> 抖音 · 全链路营销</h5>
+        <ul>
+          <li><strong>短视频内容生产</strong>：自有专业拍摄团队，核心成员曾为<strong>北京海底捞、北京大董餐饮集团</strong>提供视频制作服务，影视级品质保障</li>
+          <li><strong>品牌宣传大片</strong>：城市形象片、景区宣传片、品牌故事片，电影级叙事与视听语言</li>
+          <li><strong>直播带货</strong>：直播间搭建、主播培训、投流优化、GMV目标对赌</li>
+          <li><strong>本地生活团购</strong>：抖音团购套餐设计、POI优化、达人探店、流量采买</li>
+          <li><strong>DOU+/千川投放</strong>：精细化投流策略，ROI可控</li>
+        </ul>
+        <span class="media-cred">✦ 影视级视频制作团队</span>
+      </div>
+
+      <!-- 大众点评 -->
+      <div class="media-item media-dp">
+        <h5><span style="font-size:22px;">📍</span> 大众点评 · 必榜全案</h5>
+        <ul>
+          <li><strong>必吃榜冲刺</strong>：门店评分提升（4.8→4.9+）、好评率优化、差评管理、榜单规则拆解与精准冲榜</li>
+          <li><strong>必玩榜 / 必住榜</strong>：文旅景区与住宿类目的榜单运营，从评分到排名到曝光的全链路管理</li>
+          <li><strong>商户通运营</strong>：店铺装修、套餐设计、评价回复、会员体系搭建</li>
+          <li><strong>数据化管理</strong>：351家门店同时运营的SaaS化数据看板，实时监控GMV、退款率、ROS等核心指标</li>
+        </ul>
+        <span class="media-cred">✦ 同时运营51家点评门店</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 二、核心案例 ==================== -->
+<div class="section" style="background:var(--c-cream);">
+  <div class="section-title"><span class="section-num">02</span>过往核心案例</div>
+  <p style="color:var(--c-text-light);font-size:15px;margin-bottom:24px;">以下为丰火传媒参与或主导的代表性文旅全案案例，涵盖大型文旅目的地运营和城市非遗展示馆两大类型：</p>
+
+  <div class="case-grid">
+
+    <!-- 案例1：古滇名城 -->
+    <div class="case-card">
+      <div class="case-header">
+        <h3>七彩云南·古滇名城 全国推广案</h3>
+        <span>大型文旅目的地 | 全案策划与全网推广</span>
+      </div>
+      <div class="case-gallery">
+        <img src="assets/case_gudian_cover.jpg" alt="古滇名城项目封面" loading="lazy">
+        <img src="assets/case_gudian_scene1.jpg" alt="古滇名城场景展示" loading="lazy">
+        <img src="assets/case_gudian_scene2.jpg" alt="古滇名城活动现场" loading="lazy">
+      </div>
+      <div class="case-body">
+        <ul>
+          <li><strong>项目定位：</strong>"不是因为云南才来古滇名城，而是因为古滇名城才来云南"</li>
+          <li><strong>策略打法：</strong>搭建全国城市代理渠道 + 自建新媒体矩阵平台（微信、微博、头条号、知乎等十余个平台）+ Campaign战役式事件营销</li>
+          <li><strong>核心动作：</strong>"I YunNan"文创计划——邀请全国顶尖设计师重新设计云南特产包装；建立文创电商小程序；联合百余位微博/美拍大号进行矩阵传播；策划线下音乐节等大事件引流</li>
+          <li><strong>成效：</strong>形成"平台化运营 + 多场景内容 + 大事件驱动"的完整网推体系，将地域文旅项目升级为全国性旅居体验品牌</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 案例2：非遗展示馆 -->
+    <div class="case-card">
+      <div class="case-header">
+        <h3>四平市铁东区 非遗展示馆策划方案</h3>
+        <span>政府文旅项目 | 展馆策划 × 文创开发 × 营销推广</span>
+      </div>
+      <div class="case-gallery">
+        <img src="assets/case_feiyi_cover.jpg" alt="非遗展示馆效果图" loading="lazy">
+        <img src="assets/case_feiyi_space.jpg" alt="非遗展示馆空间规划" loading="lazy">
+        <div class="case-gallery-row">
+          <img src="assets/case_feiyi_product1.png" alt="非遗文创产品-1" loading="lazy">
+          <img src="assets/case_feiyi_product2.png" alt="非遗文创产品-2" loading="lazy">
+          <img src="assets/case_feiyi_product3.png" alt="非遗文创产品-3" loading="lazy">
+        </div>
+      </div>
+      <div class="case-body">
+        <ul>
+          <li><strong>项目定位：</strong>以"礼遇四平"为核心的城市非遗文创集合空间，打造政务接待、旅游打卡的标配去处</li>
+          <li><strong>策略打法：</strong>背景分析→项目定位→产品规划（非遗+农特+文创三层体系）→空间布局→营销推广→效益测算</li>
+          <li><strong>核心动作：</strong>整合全市各县区非遗项目和农特产品，统一选品标准与包装设计；构建"景点引流—展馆转化—电商延伸—回头客复购"的消费闭环；联动景区/酒店/旅行社/工会等多渠道导入客流</li>
+          <li><strong>成效：</strong>形成政企协同示范模式，推动文旅产业结构从"分散型"向"品牌聚合型"升级</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== 三、报恩寺价值 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">03</span>报恩寺——不可复制的国宝级资产</div>
+  <p style="color:var(--c-text-light);font-size:15px;margin-bottom:24px;">
+    平武报恩寺不是一座普通的古庙。它是中国现存规模最大、保存最完整的明代古建筑群之一，被誉为"<strong>深山故宫</strong>"。2024年《黑神话：悟空》取景后爆火出圈，董宇辉"与辉同行"栏目实地探访，已具备全国级认知基础。
+  </p>
+
+  <div class="highlight-grid">
+    <div class="hl-item hl-item-wide">
+      <div class="hl-image-showcase">
+        <div class="showcase-main" id="baoensi-hero">
+          <div class="showcase-placeholder" style="background:linear-gradient(135deg,#8B0000 0%,#D4A574 40%,#2C3E50 100%);display:flex;align-items:center;justify-content:center;">
+            <span style="color:#fff;font-size:24px;font-weight:bold;text-shadow:0 2px 10px rgba(0,0,0,0.5);">报恩寺全景 · 深山故宫</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hl-item">
+      <span class="hl-num">580+</span>
+      <h4>年历史传承</h4>
+      <p>始建于明正统五年（1440年），历时近80年完工，1996年列为全国重点文保单位，2007年获评国家AAAA级景区。</p>
+    </div>
+    <div class="hl-item">
+      <span class="hl-num">六绝</span>
+      <h4>举世无双的建筑奇观</h4>
+      <p>① 全楠木金丝结构 ② 36种斗拱（比故宫还多）③ 整木千手观音像 ④ 明代转轮经藏 ⑤ 万龙奇观9999条龙 ⑥ 450㎡明代彩绘壁画</p>
+    </div>
+    <div class="hl-item">
+      <span class="hl-num">2.78万</span>
+      <h4>平方米占地面积</h4>
+      <p>沿300米中轴线递次升高，完全仿北京故宫形制布局，气势恢宏。背依箭楼山，三面临江，风水格局得天独厚。</p>
+    </div>
+    <div class="hl-item" style="grid-column: 1 / -1;">
+      <div class="tianshi-layout">
+        <!-- 左侧：文字内容 -->
+        <div class="tianshi-left">
+          <span class="hl-num">天时地利</span>
+          <h4>九绵高速贯通 · 流量变留量的历史机遇</h4>
+          <p><strong>九绵高速全线通车</strong>，成都至平武车程从7小时缩短至<strong>3小时以内</strong>，深度融入"成都3小时旅游圈"。这是平武文旅发展的<strong>历史性转折点</strong>——外部流量通道已打通，关键在于如何让游客"进得来、留得住、带得走"。</p>
+
+          <div style="margin-top:16px;padding:18px;background:linear-gradient(135deg,#fdf8f0,#fef3e6);border-radius:12px;border-left:4px solid var(--c-accent);">
+            <p style="font-size:15px;color:#8B4513;margin-bottom:12px;"><strong>🎯 核心战略：打造"秘境平武·熊猫家园"城市品牌</strong></p>
+            <p style="font-size:14px;color:var(--c-text-light);line-height:1.85;">以报恩寺为文化核心，联动<strong>王朗自然保护区</strong>（大熊猫栖息地）、<strong>白马藏族民俗</strong>（国家级非遗"跳曹盖"）、<strong>老河沟生态</strong>等核心点位，构建"人文+生态+民族"三位一体的全域旅游格局。将九绵高速带来的过路客流转化为在平武深度停留的<strong>"留量"</strong>——住一晚、吃一顿、买一件文创、讲一个平武故事。</p>
+          </div>
+
+          <!-- 四点位卡片 -->
+          <div style="display:grid; grid-template-columns: repeat(2,1fr); gap:12px; margin-top:20px;">
+            <div style="background:linear-gradient(135deg,#8B0000 0%,#a93226 100%);color:#fff;border-radius:10px;padding:16px;text-align:center;">
+              <span style="font-size:24px;">🏯</span>
+              <h5 style="margin:6px 0 2px;font-size:15px;color:#FFD700;">报恩寺</h5>
+              <p style="font-size:11px;opacity:.9;margin:0;line-height:1.5;">文化引擎 · 深山故宫</p>
+            </div>
+            <div style="background:linear-gradient(135deg,#2E7D32 0%,#43A047 100%);color:#fff;border-radius:10px;padding:16px;text-align:center;">
+              <span style="font-size:24px;">🐼</span>
+              <h5 style="margin:6px 0 2px;font-size:15px;color:#C8E6C9;">王朗保护区</h5>
+              <p style="font-size:11px;opacity:.9;margin:0;line-height:1.5;">熊猫家园 · 国际级IP</p>
+            </div>
+            <div style="background:linear-gradient(135deg,#1565C0 0%,#1976D2 100%);color:#fff;border-radius:10px;padding:16px;text-align:center;">
+              <span style="font-size:24px;">🎭</span>
+              <h5 style="margin:6px 0 2px;font-size:15px;color:#BBDEFB;">白马藏寨</h5>
+              <p style="font-size:11px;opacity:.9;margin:0;line-height:1.5;">跳曹盖非遗 · 民族风情</p>
+            </div>
+            <div style="background:linear-gradient(135deg,#00838F 0%,#00ACC1 100%);color:#fff;border-radius:10px;padding:16px;text-align:center;">
+              <span style="font-size:24px;">🌿</span>
+              <h5 style="margin:6px 0 2px;font-size:15px;color:#B2EBF2;">老河沟自然</h5>
+              <p style="font-size:11px;opacity:.9;margin:0;line-height:1.5;">生态教育 · 森林康养</p>
+            </div>
+          </div>
+
+          <p style="font-size:13px;color:var(--c-text-light);margin-top:14px;line-height:1.8;"><strong>联动逻辑：</strong>报恩寺吸引首次到访 → 王朗+白马延长停留 → 老河沟承接研学客群 → 多日游闭环 = 真正实现"流量变留量"</p>
+        </div>
+
+        <!-- 右侧：路线图视觉 -->
+        <div class="tianshi-right">
+          <div class="route-map">
+            <div class="route-map-title">🛣️ 成都→平武<br>旅游黄金通道</div>
+            <div class="route-line"></div>
+
+            <div class="route-point">
+              <span class="route-dot"></span><br>
+              <span class="route-label">成 都</span>
+              <div class="route-sub">出发地 · 西南中心</div>
+            </div>
+            <div class="route-arrow-down">⬇</div>
+            <div class="route-sub" style="opacity:.6;font-size:10px;">九绵高速 · 约3h</div>
+            <div class="route-arrow-down">⬇</div>
+
+            <div class="route-point">
+              <span class="route-dot"></span><br>
+              <span class="route-label">平 武</span>
+              <div class="route-sub">目的地 · 秘境家园</div>
+            </div>
+
+            <div class="route-badge">流量 → 留量</div>
+          </div>
+
+          <!-- 右侧下方数据卡片 -->
+          <div style="margin-top:14px;background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+            <p style="font-size:13px;font-weight:700;color:var(--c-primary);margin-bottom:10px;">📊 九绵高速效应</p>
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <div style="text-align:center;flex:1;">
+                <span style="font-size:22px;font-weight:800;color:var(--c-accent);">7h</span>
+                <p style="font-size:11px;color:var(--c-text-light);margin:2px 0 0;">原车程时间</p>
+              </div>
+              <div style="text-align:center;flex:1;">
+                <span style="font-size:22px;font-weight:800;color:#2E7D32;">&lt;3h</span>
+                <p style="font-size:11px;color:var(--c-text-light);margin:2px 0 0;">现车程时间</p>
+              </div>
+              <div style="text-align:center;flex:1;">
+                <span style="font-size:22px;font-weight:800;color:#1565C0;">-58%</span>
+                <p style="font-size:11px;color:var(--c-text-light);margin:2px 0 0;">时间缩减</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 报恩寺文创产品规划 -->
+  <div style="margin-top:40px;">
+    <h3 style="font-size:20px;color:var(--c-primary);margin-bottom:6px;">🎨 文创产品线规划（五大核心品类）</h3>
+    <p style="font-size:14px;color:var(--c-text-light);margin-bottom:24px;">借鉴故宫文创成功经验，围绕报恩寺"大明美学""金丝楠木""万龙奇观"三大IP元素，开发高颜值、强传播力的系列文创产品：</p>
+    
+    <div class="product-grid">
+
+      <!-- 产品1：报恩雪糕 -->
+      <div class="product-card">
+        <div class="product-visual product-icecream">
+          <div class="product-shape icecream-shape"></div>
+          <div class="product-label">报恩雪糕</div>
+        </div>
+        <h4>🍦 "报恩"造型文创雪糕</h4>
+        <p><strong>设计概念：</strong>复刻报恩寺华严殿屋顶轮廓与万佛阁飞檐造型，推出"深山故宫"主题3D造型雪糕。</p>
+        <p><strong>口味方向：</strong>川味花椒巧克力、熊猫竹叶抹茶、藏红花拿铁——融合平武本地特色。</p>
+        <p><strong>传播逻辑：</strong>手持雪糕与真建筑合影 = 天然社交媒体内容。参考故宫脊兽雪糕单月百万支销量。</p>
+      </div>
+
+      <!-- 产品2：金丝楠折扇 -->
+      <div class="product-card">
+        <div class="product-visual product-fan">
+          <div class="product-shape fan-shape"></div>
+          <div class="product-label">金丝楠折扇</div>
+        </div>
+        <h4>🪭 金丝楠木折扇系列</h4>
+        <p><strong>设计概念：</strong>以报恩寺独有的金丝楠木为灵感来源，扇面印制9999条龙纹样精选图案、明代彩绘壁画局部、斗拱结构线描图。</p>
+        <p><strong>档次分层：</strong>入门款（竹骨印刷扇面，¥68-128）→ 收藏款（楠木贴片扇骨+手工绘画，¥388-888）→ 礼品定制款（企业/政务伴手礼，¥1288+）。</p>
+        <p><strong>文化附加值：</strong>每把折扇附带二维码，扫码可听"一根楠木的故事"音频导览，将产品转化为文化传播载体。</p>
+      </div>
+
+      <!-- 产品3：万龙祈福牌 -->
+      <div class="product-card">
+        <div class="product-visual product-plaque">
+          <div class="product-shape plaque-shape"></div>
+          <div class="product-label">万龙祈福牌</div>
+        </div>
+        <h4>🐉 "万龙祈福"木质许愿牌</h4>
+        <p><strong>设计概念：</strong>取材报恩寺"万龙奇观"9999条龙的意象，设计精美雕刻木质许愿牌，游客可书写心愿悬挂于指定区域。</p>
+        <p><strong>体验闭环：</strong>购买祈福牌 → 书写愿望 → 亲自悬挂 → 拍照分享 → 年度"万龙灯会"统一点亮仪式。让一次购买变成持续的情感联结。</p>
+        <p><strong>收益潜力：</strong>参照同类景区数据，单价¥29-99，日均销量200-500块，年收入可达百万级别。</p>
+      </div>
+
+      <!-- 产品4：大明美学盲盒 -->
+      <div class="product-card">
+        <div class="product-visual product-blindbox">
+          <div class="product-shape blindbox-shape"></div>
+          <div class="product-label">大明盲盒</div>
+        </div>
+        <h4>📦 "大明六绝"收藏盲盒</h4>
+        <p><strong>设计概念：</strong>将报恩寺"六绝"（楠木结构、斗拱、千手观音、转轮经藏、万龙奇观、彩绘壁画）分别设计为Q版手办/徽章/冰箱贴，以盲盒形式发售。</p>
+        <p><strong>稀缺性设计：</strong>每套设1个隐藏款——"报恩寺全貌"限定金色版，激发收集欲和二次传播。</p>
+        <p><strong>渠道策略：</strong>线下景区首发 + 线上抖音小店/小红书商城同步销售 + 节庆限量联名款（如春节特别版），形成持续销售节奏。</p>
+      </div>
+
+      <!-- 产品5：研学套装 -->
+      <div class="product-card">
+        <div class="product-visual product-studykit">
+          <div class="product-shape studykit-shape"></div>
+          <div class="product-label">研学探索包</div>
+        </div>
+        <h4>📚 "小小营造师"研学探索套装</h4>
+        <p><strong>设计概念：</strong>面向中小学生群体，开发"古建筑科普+动手体验"一体化研学产品包。</p>
+        <p><strong>套装内容：</strong>斗拱拼装模型（榫卯结构真实还原）、报恩寺寻宝任务卡、金丝楠木标本小样、"我心中的大明宫殿"绘画本、研学证书。</p>
+        <p><strong>市场空间：</strong>对接成都及周边城市学校春秋游市场、亲子家庭周末游，客单价¥168-298，预计年接待量可达3-5万人次。</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 四、顶层构想 ==================== -->
+<div class="section" style="background:var(--c-cream);">
+  <div class="section-title"><span class="section-num">04</span>项目顶层构想</div>
+
+  <div class="framework-box">
+    <div class="fw-row">
+      <div class="fw-label">核心定位</div>
+      <div class="fw-content">
+        <strong>"深山故宫 · 大明美学圣地"</strong> —— 规避宗教敏感色彩，聚焦报恩寺独一无二的明代建筑艺术与宫廷美学价值，打造差异化、高审美、有温度的文化地标。<br>
+        <div class="fw-tags">
+          <span class="fw-tag">建筑地标</span>
+          <span class="fw-tag">美学高地</span>
+          <span class="fw-tag">研学基地</span>
+          <span class="fw-tag">网红打卡</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-row">
+      <div class="fw-label">驱动逻辑</div>
+      <div class="fw-content">
+        <strong>线上引爆 → 线下承载 → 活动续航</strong> 三步闭环：<br><br>
+        ▸ <strong>线上引爆：</strong>以抖音短视频为核心阵地，辅以小红书种草、微信生态深耕。策划"寻找报恩寺9999条龙""大明穿越指南"等系列内容话题，邀请头部文旅达人探访，快速建立全国级知名度和打卡欲望。<br><br>
+        ▸ <strong>线下承载：</strong>对报恩寺周边街区进行"修建如旧"改造，营造沉浸式明代美学街区。引入特色餐饮、精品民宿、文化零售等业态，让游客"来了能留、留了能花"。参考麓湖CPI岛的非标商业营造经验——自然融入、审美在线、业态多元。<br><br>
+        ▸ <strong>活动续航：</strong>四季不断档——春季"大明花朝节"、夏季"龙宫夜游会"、秋季"金丝楠木文化节"、冬季"报恩灯会"。配合非遗展演（白马藏族跳曹盖等），维持全年热度，吸引重复消费。
+      </div>
+    </div>
+
+    <div class="fw-row">
+      <div class="fw-label">商业闭环</div>
+      <div class="fw-content">
+        <strong>招商 → 运营 → 收益 → 联动</strong><br><br>
+        ▸ <strong>招商策略：</strong>设计有吸引力的入驻政策（免租期、装修补贴），依托丰火传媒在成都积累的优质餐饮和文创品牌资源，快速填充商业内容。<br><br>
+        ▸ <strong>收益模式：</strong>租金基础收益 + SaaS系统参与商户流水分成 + 文创产品销售 + 研学课程收入 + 节庆活动门票及衍生消费。<br><br>
+        ▸ <strong>区域联动：</strong>将报恩寺项目植入"九寨沟 — 平武 — 绵阳"黄金旅游线路，打造成为线路上的<strong>文化中转站</strong>和<strong>独立目的地</strong>，不再仅仅是"路过的地方"。
+      </div>
+    </div>
+
+    <div class="fw-row">
+      <div class="fw-label">运营角色</div>
+      <div class="fw-content">
+        丰火传媒作为<strong>"专业运营与内容方"</strong>，核心价值在于：<br>
+        ✦ 从0到1的IP定位与故事体系构建<br>
+        ✦ 全案营销策划与全媒体矩阵运营<br>
+        ✦ 招商资源导入与商业业态管理<br>
+        ✦ 四季活动策划与执行保障<br>
+        ✦ 数据监测与持续优化迭代<br><br>
+        我们确保项目不仅是"开街即巅峰"，更是<strong>长期有活力、可持续运转</strong>的文化产业引擎。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 五、三步走路径 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">05</span>推进路径建议</div>
+
+  <div class="drive-steps">
+    <div class="drive-step">
+      <div class="step-icon">一</div>
+      <h4>信任建立</h4>
+      <p>以案例说话，用本方案框架性思路展示我们的理解力和专业度。通过非正式沟通确认决策方向偏好（偏建筑地标 or 偏IP内容运营），听取具体诉求。</p>
+    </div>
+    <div class="drive-step">
+      <div class="step-icon">二</div>
+      <h4>正式汇报</h4>
+      <p>核心团队进行正式汇报，阐述完整框架思路与预期效果。若思路获得认可，立即推动签订前期策划/咨询服务合同。</p>
+    </div>
+    <div class="drive-step">
+      <div class="step-icon">三</div>
+      <h4>深化落地</h4>
+      <p>在合同保障下投入资源，完成可行性研究、详细方案设计与预算编制。以联合体形式推进工程总包+运营内容的协同落地。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 六、预期效益 ==================== -->
+<div class="section" style="background:var(--c-cream);">
+  <div class="section-title"><span class="section-num">06</span>项目预期综合效益</div>
+
+  <ul class="benefit-list">
+    <li><strong>文化自信与城市名片</strong> —— 以"秘境平武·熊猫家园"为城市品牌统领，将报恩寺从"藏在深山人未识"提升为全国知名的"大明美学圣地"，成为绵阳乃至四川的一张重量级文化名片，让当地人发自内心地为家乡感到自豪。</li>
+    <li><strong>流量变留量的产业升级</strong> —— 九绵高速通车带来历史性机遇，通过报恩寺+王朗+白马藏寨+老河沟的多点位协同，将过路客流转化为深度停留的"留量"。推动"一核四区"全域旅游格局加速成型，带动周边民宿、餐饮、交通等配套产业协同发展。参照平武现有数据：自然教育年访客59万人次、直接经济收入超3000万元，本项目有望实现倍增效应。</li>
+    <li><strong>就业与增收</strong> —— 项目建设与运营预计可直接带动就业岗位500+，间接拉动农产品销售、民宿经营、手工艺制作等领域，助力乡村振兴和百姓增收。</li>
+    <li><strong>政企协同示范</strong> —— 以市场化机制运营公共文化资源，探索"政府引导+企业运作+利益共享"的可复制模式，为同类县域文旅项目提供示范样板。</li>
+    <li><strong>资产保值增值</strong> —— 近7亿元城市更新资金的投入，通过专业化运营实现社会效益与经济效益的双赢，确保国有资产保值增值，留下经得起历史检验的作品。</li>
+  </ul>
+</div>
+
+<!-- ==================== 结语 ==================== -->
+<div class="closing">
+  <h2>天时 · 地利 · 人和</h2>
+  <p>
+    报恩寺拥有580年的厚重积淀，拥有"深山故宫"的顶级禀赋。<br>
+    <strong>九绵高速通车</strong>——成都3小时直达，流量通道历史性打通。<br>
+    《黑神话》点燃全民关注，"秘境平武·熊猫家园"品牌蓄势待发。<br>
+    资金到位、时机成熟、万事俱备。<br><br>
+    所差的，是一个能让这份宝藏真正<strong>"活起来""火起来""留下来"</strong>的专业团队。<br><br>
+    <strong>丰火传媒愿做这个"点火的人"。</strong>
+  </p>
+</div>
+
+</body>
+</html>
