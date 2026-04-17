@@ -1217,6 +1217,190 @@
     <img src="assets/baoensi_interior.png" alt="报恩寺内部金丝楠木大殿" style="width:100%;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.1);">
   </div>
 
+  <!-- 川西自驾游路线攻略 -->
+  <div style="margin-top:44px;">
+    <h3 style="font-size:20px;color:var(--c-primary);margin-bottom:6px;">川西自驾游 · 黄金环线攻略</h3>
+    <p style="font-size:14.5px;color:var(--c-text-light);line-height:1.8;margin-bottom:22px;">报恩寺与九寨沟同属川西黄金旅游带。九寨沟所在的阿坝州是川西核心区域，而<strong>平武报恩寺恰好位于成都—九寨沟的必经之路上</strong>，是通往九寨沟的"文化门户"。将报恩寺纳入行程，不仅不绕路，反而让整个旅程更有厚度——先看580年的深山故宫，再看世界自然遗产，一次旅行两种极致体验。</p>
+
+    <style>
+      .route-section {
+        display:grid; grid-template-columns: 1fr 380px; gap:28px;
+        background:linear-gradient(135deg,#f8f4ec,#fff9f2);
+        border-radius:18px; padding:32px; border:1px solid rgba(218,165,32,.15);
+      }
+      @media(max-width:860px){ .route-section{ grid-template-columns:1fr; } }
+
+      /* 路线天数卡片 */
+      .route-days { display:flex; flex-direction:column; gap:14px; }
+      .route-day {
+        display:flex; align-items:flex-start; gap:16px; position:relative;
+        background:var(--c-white); border-radius:12px; padding:20px;
+        box-shadow:0 2px 10px rgba(0,0,0,.04);
+        border-left:4px solid var(--c-accent); transition:transform .25s ease,box-shadow .25s ease;
+      }
+      .route-day:hover { transform:translateX(6px); box-shadow:0 6px 20px rgba(139,69,19,.1); }
+      .day-num-wrap { flex-shrink:0; width:48px;height:48px;border-radius:50%;
+        background:linear-gradient(135deg,var(--c-accent),#c9a96e); color:#fff;
+        display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;
+        box-shadow:0 4px 12px rgba(139,69,19,.2);
+      }
+      .day-content h4 { font-size:16px; color:var(--c-primary); margin:0 0 6px; font-weight:800; letter-spacing:1px; }
+      .day-content p { font-size:13.5px; color:var(--c-text-light); line-height:1.75; margin:0; }
+      .day-tag {
+        display:inline-block;background:rgba(255,215,0,.12);color:#8B6914;
+        font-size:11px;padding:2px 8px;border-radius:6px;margin-left:6px;font-weight:700;
+      }
+      /* 连接箭头 */
+      .route-arrow-line { text-align:center;padding:4px 0 4px 64px; opacity:.35; font-size:14px;letter-spacing:4px; }
+
+      /* 地图区 */
+      .route-map-box {
+        border-radius:14px; overflow:hidden;
+        background:linear-gradient(145deg,#e8f0f7,#d4e4f1); position:relative;
+        min-height:400px; display:flex;flex-direction:column; align-items:center; justify-content:center;
+        box-shadow:inset 0 2px 12px rgba(0,0,0,.06), 0 4px 20px rgba(0,0,0,.05);
+      }
+      .map-title { font-size:17px;font-weight:800;color:#1a365d; margin-bottom:16px; letter-spacing:2px; }
+      .map-route-svg { width:100%; max-width:340px; height:auto; }
+    </style>
+
+    <div class="route-section">
+      <!-- 左侧：行程规划 -->
+      <div class="route-days">
+
+        <div class="route-day">
+          <div class="day-num-wrap">D1</div>
+          <div class="day-content">
+            <h4>成都 / 绵阳 出发 → 平武 → 九寨沟口</h4>
+            <p>上午从成都出发（或绵阳中转），经京昆高速转九绵高速，<strong>约3.5~5小时车程抵达平武县</strong>。中午在县城品尝当地特色美食（荞麦面、腊肉、山珍），下午参观<strong>报恩寺</strong>（建议游览1.5~2小时）。傍晚继续沿九绵高速北上，当晚入住九寨沟沟口酒店。</p>
+          </div>
+        </div>
+        <div class="route-arrow-line">⬇ 沿九绵高速继续北上 约90km ⬇</div>
+
+        <div class="route-day">
+          <div class="day-num-wrap">D2</div>
+          <div class="day-content">
+            <h4>全天游览九寨沟景区<span class="day-tag">核心日</span></h4>
+            <p>建议早7点入园，按"Y字形"经典路线游览：日则沟（五花海、珍珠滩、诺日朗瀑布）→ 则查洼沟（长海、五彩池）→ 树正沟（树正群海、犀牛海）。全天约需6~8小时。晚上可观看《九寨千古情》演出。</p>
+          </div>
+        </div>
+
+        <div class="route-arrow-line">🔄 返程：两条路线可选 🔄</div>
+
+        <div class="route-day">
+          <div class="day-num-wrap">返程A</div>
+          <div class="day-content">
+            <h4>原路返回（推荐·最快）<span class="day-tag">约5h</span></h4>
+            <p><strong>九寨沟 → 平武 → 绵阳 → 成都</strong>。返程时可再次顺路经过平武，购买本地特产（高山蜂蜜、野生菌、花椒）。全程约5~6小时。</p>
+          </div>
+        </div>
+
+        <div class="route-day">
+          <div class="day-num-wrap">返程B</div>
+          <div class="day-content">
+            <h4>西线大环线（深度游·推荐）<span class="day-tag">约7h+</span></h4>
+            <p><strong>九寨沟 → 黄龙 → 松潘古城 → 茂县 → 成都</strong>。途经黄龙风景区（钙化彩池奇观）、松潘古城（千年边陲重镇）、茂县羌族风情体验。形成完整的<strong>"东进西出"</strong>川西大环线。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 右侧：环线地图 -->
+      <div class="route-map-box">
+        <div class="map-title">川西黄金旅游环线</div>
+        <svg viewBox="0 0 320 360" class="map-route-svg">
+          <!-- 背景山脉暗示 -->
+          <path d="M0,180 Q40,120 80,150 Q130,90 170,140 Q220,80 270,130 Q300,100 320,160 L320,360 L0,360Z"
+                fill="#d4e8ef" opacity=".5"/>
+          <path d="M0,240 Q50,190 100,220 Q160,170 210,210 Q260,175 310,210 L310,360 L0,360Z"
+                fill="#c2dde6" opacity=".4"/>
+
+          <!-- 主环线路径 -->
+          <path d="M160,310
+                   C120,290 70,260 55,230
+                   C45,200 65,165 85,140
+                   C110,115 155,105 185,95
+                   C220,82 250,78 275,88
+                   C298,98 305,125 295,155
+                   C282,190 245,225 220,250
+                   C195,275 175,295 160,310Z"
+                fill="none" stroke="#c9a96e" stroke-width="3" stroke-dasharray="8,4" opacity=".6"/>
+
+          <!-- 实线段：成都-平武-九寨 -->
+          <path d="M160,310 C120,290 70,260 55,230 C45,200 65,165 85,140 C110,115 155,105 185,95"
+                fill="none" stroke="#8B0000" stroke-width="3.5"/>
+
+          <!-- 实线段：九寨-黄龙-松潘-成都 -->
+          <path d="M185,95 C220,82 250,78 275,88
+                   C298,98 305,125 295,155
+                   C282,190 245,225 220,250
+                   C195,275 175,295 160,310Z"
+                fill="none" stroke="#1565C0" stroke-width="3.5" stroke-dasharray="6,3"/>
+
+          <!-- 箭头标记 -->
+          <polygon points="83,138 92,148 76,149" fill="#8B0000"/>
+          <polygon points="183,93 192,103 176,104" fill="#8B0000"/>
+          <polygon points="158,308 168,315 152,316" fill="#1565C0"/>
+
+          <!-- 城市节点 -->
+          <!-- 成都 -->
+          <circle cx="160" cy="310" r="14" fill="#E74C3C" stroke="#fff" stroke-width="2.5"/>
+          <text x="160" y="334" text-anchor="middle" font-size="13" font-weight="800" fill="#c0392b">成 都</text>
+
+          <!-- 绵阳 -->
+          <circle cx="100" cy="268" r="9" fill="#F39C12" stroke="#fff" stroke-width="2"/>
+          <text x="100" y="286" text-anchor="middle" font-size="10" font-weight="700" fill="#d68910">绵阳</text>
+
+          <!-- 平武/报恩寺 -->
+          <circle cx="58" cy="228" r="14" fill="#8B0000" stroke="#FFD700" stroke-width="2.5"/>
+          <text x="58" y="208" text-anchor="middle" font-size="11" font-weight="800" fill="#8B0000">平武县</text>
+          <text x="58" y="248" text-anchor="middle" font-size="9" font-weight="700" fill="#8B0000">报恩寺</text>
+
+          <!-- 九寨沟 -->
+          <circle cx="188" cy="93" r="16" fill="#2ECC71" stroke="#fff" stroke-width="2.5"/>
+          <text x="188" y="72" text-anchor="middle" font-size="12" font-weight="800" fill="#1a7a43">九寨沟</text>
+
+          <!-- 黄龙 -->
+          <circle cx="278" cy="86" r="10" fill="#9B59B6" stroke="#fff" stroke-width="2"/>
+          <text x="278" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="#7d3c98">黄龙</text>
+
+          <!-- 松潘 -->
+          <circle cx="297" cy="153" r="9" fill="#3498DB" stroke="#fff" stroke-width="2"/>
+          <text x="316" y="157" font-size="10" font-weight="700" fill="#2980b9">松潘</text>
+
+          <!-- 图例 -->
+          <rect x="15" y="12" width="100" height="52" rx="6" fill="rgba(255,255,255,.85)" stroke="#ddd"/>
+          <line x1="22" y1="28" x2="46" y2="28" stroke="#8B0000" stroke-width="3"/>
+          <text x="52" y="32" font-size="9.5" fill="#555">去程主线</text>
+          <line x1="22" y1="46" x2="46" y2="46" stroke="#1565C0" stroke-width="3" stroke-dasharray="6,3"/>
+          <text x="52" y="50" font-size="9.5" fill="#555">返程环线</text>
+        </svg>
+
+        <div style="padding:12px 16px;text-align:center;">
+          <p style="font-size:12px;color:#1a365d;line-height:1.7;margin:0;"><strong>总里程：</strong>去程约450km | 大环线约750km<br>
+          <strong>最佳季节：</strong>4月~11月 | <strong>路况：</strong>全程高速+国道，轿车可通行</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 报恩寺看点提示卡 -->
+    <div style="margin-top:20px;display:flex;gap:16px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;background:linear-gradient(135deg,#fdfbf7,#fef5e6);border-radius:12px;padding:18px 20px;border-left:4px solid var(--c-accent);">
+        <p style="font-size:14.5px;color:var(--c-primary);font-weight:800;margin:0 0 8px;">报恩寺不可错过的五大看点</p>
+        <p style="font-size:13.5px;color:var(--c-text-light);line-height:1.8;margin:0;"><strong>金丝楠木全木结构</strong> — 中国现存最完整的明代楠木建筑群<br>
+        <strong>转轮经藏</strong> — 明代精密机械杰作，至今可转动<br>
+        <strong>千手观音像</strong> — 一根整楠木雕刻而成<br>
+        <strong>9999条龙</strong> — 万龙壁、龙柱、龙纹，形态各异<br>
+        <strong>明代彩绘壁画</strong> — 450㎡宫廷级艺术珍品</p>
+      </div>
+      <div style="flex:1;min-width:200px;background:linear-gradient(135deg,#f0f7f4,#e8f5ed);border-radius:12px;padding:18px 20px;border-left:4px solid #2ECC71;">
+        <p style="font-size:14.5px;color:#1a7a43;font-weight:800;margin:0 0 8px;">为什么一定要来报恩寺？</p>
+        <p style="font-size:13.5px;color:var(--c-text-light);line-height:1.8;margin:0;">它是你从成都到九寨沟路上的<strong>"最佳中途站"</strong>——不绕路、不赶路，正好在半路歇脚。花1~2小时看完这座"深山故宫"，等于免费解锁了一个国家AAAA级景区+全国重点文保单位。<br>带着孩子来的话，这里比九寨沟更安静，更适合做一场<strong>沉浸式的建筑美学启蒙</strong>。</p>
+      </div>
+    </div>
+
+  </div>
+
   <!-- 报恩寺文创产品规划 -->
   <div style="margin-top:40px;">
     <h3 style="font-size:20px;color:var(--c-primary);margin-bottom:6px;">文创产品线规划（五大核心品类）</h3>
