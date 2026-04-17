@@ -49,13 +49,16 @@
     background: radial-gradient(circle at 60% 40%, rgba(201,162,39,0.08) 0%, transparent 50%);
   }
   .cover-deco {
-    font-size: 72px;
-    letter-spacing: 24px;
-    opacity: 0.15;
+    font-size: 18px;
+    letter-spacing: 16px;
+    opacity: 0.25;
     font-family: "STKaiti", "KaiTi", serif;
     position: absolute;
-    top: 10%;
-    writing-mode: vertical-rl;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    text-transform: uppercase;
   }
   .cover h1 {
     font-size: clamp(32px, 5.5vw, 56px);
@@ -724,6 +727,12 @@
   }
   .solution-block p { font-size:14px !important; line-height:1.85 !important; color:var(--c-text) !important; }
 
+  @media (max-width: 768px) {
+    .sol-flex-row, .sol-flex-row-rev { flex-direction: column; }
+    .sol-flex-row > div[style*="flex:0"], .sol-flex-row-rev > div[style*="flex:0"] {
+      max-width:100%; margin:0 auto;
+    }
+  }
   @media (max-width: 600px) {
   @media (max-width: 600px) {
     .section { padding: 44px 20px; }
@@ -923,40 +932,57 @@
       <div class="case-challenge">
         <h4>📋 项目背景</h4>
         <p>吉林省四平市铁东区政府希望建设一座<strong>非遗主题展示馆</strong>，但面临的现实是：全市各县区的非遗项目和农特产品分散在各处，没有统一的品牌形象、没有标准化的产品包装、没有有效的销售渠道。更关键的是——<strong>建好了谁来管？谁来做运营？怎么保证不死掉？</strong></p>
-        <p>这是典型的政府文旅项目痛点：有钱建、没钱养，建完即巅峰、开馆即冷清。</p>
+        <p style="margin-bottom:0;">这是典型的政府文旅项目痛点：有钱建、没钱养，建完即巅峰、开馆即冷清。</p>
+
+        <!-- 空间规划图片 -->
+        <div class="case-gallery" style="margin-top:16px;">
+          <img src="assets/case_feiyi_layout.jpg" alt="非遗展示馆空间布局规划" loading="lazy">
+        </div>
       </div>
 
       <!-- 解决方案 -->
       <div class="case-solution">
         <h4>💡 我们怎么做的</h4>
 
-        <div class="solution-block">
-          <div class="sol-label">第一步：顶层设计——从"展馆"到"空间"</div>
-          <p>不按传统"博物馆"设计，而是定义为<strong>"城市非遗文创集合空间"</strong>——让每个走进来的人都能带走一件代表四平的东西。这个定位决定了后续所有策略方向。</p>
+        <!-- 左右布局：文字+图片 -->
+        <div style="display:flex; gap:24px; margin-bottom:18px; align-items:flex-start;" class="sol-flex-row">
+          <div style="flex:1;">
+            <div class="solution-block">
+              <div class="sol-label">第一步：顶层设计——从"展馆"到"空间"</div>
+              <p style="margin-bottom:0;">定义为<strong>"城市非遗文创集合空间"</strong>——让每个走进来的人都能带走一件代表四平的东西。这个定位决定后续所有策略方向。</p>
+            </div>
+
+            <div class="solution-block">
+              <div class="sol-label">第二步：三层产品体系搭建</div>
+              <p style="margin-bottom:0;"><strong>非遗层</strong>（剪纸、草编等手工艺品）→ <strong>农特层</strong>（玉米、大米等统一包装）→ <strong>文创层</strong>（文具、家居等创新衍生品）。三层互为支撑：非遗提供故事内核，农特提供供应链基础，文创提供利润空间和传播话题。</p>
+            </div>
+          </div>
+          <div style="flex:0; min-width:260px; max-width:300px;">
+            <img src="assets/case_feiyi_space.jpg" alt="非遗展示馆内部空间" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,.06);" loading="lazy">
+          </div>
         </div>
 
-        <div class="solution-block">
-          <div class="sol-label">第二步：三层产品体系搭建</div>
-          <p>我们对全市非遗项目和农特产进行了系统梳理，建立了<strong>三层产品结构</strong>：
-          <br>• <strong>非遗层</strong>：传统手工艺品（剪纸、草编、农民画等），强调文化传承和工艺价值
-          <br>• <strong>农特层</strong>：地方特色农产品（玉米、大米、山货等），统一包装设计，提升商品化程度
-          <br>• <strong>文创层</strong>：基于前两层元素开发的创新衍生品（文具、家居、饰品等），面向年轻消费群体
-          <br>三层互为支撑：非遗提供故事内核，农特提供供应链基础，文创提供利润空间和传播话题。</p>
-        </div>
-
-        <div class="solution-block">
-          <div class="sol-label">第三步：空间规划 + 消费动线设计</div>
-          <p>展馆内部不只是陈列，而是按照<strong>"吸引—体验—转化—复购"</strong>的逻辑设计参观动线：入口处用沉浸式装置制造第一印象 → 核心展区通过多媒体和实物结合讲述非遗故事 → 文创零售区承接购物转化需求 → 互动体验区（DIY工坊）延长停留时间 → 出口处设置线上商城二维码引导二次消费。</p>
+        <!-- 单品细节图片 + 文字 -->
+        <div style="display:flex; gap:24px; margin-bottom:18px; align-items:center;" class="sol-flex-row-rev">
+          <div style="flex:0; min-width:200px; max-width:240px;">
+            <img src="assets/case_feiyi_item1.png" alt="非遗文创单品细节" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,.05);" loading="lazy">
+          </div>
+          <div style="flex:1;">
+            <div class="solution-block">
+              <div class="sol-label">第三步：消费动线设计</div>
+              <p style="margin-bottom:0;"><strong>"吸引—体验—转化—复购"</strong>四段式动线：入口沉浸式装置制造第一印象 → 核心展区多媒体+实物讲述故事 → 文创零售区承接购物 → 互动DIY工坊延长停留 → 出口线上商城引导二次消费。</p>
+            </div>
+          </div>
         </div>
 
         <div class="solution-block">
           <div class="sol-label">第四步：多渠道客流导入</div>
-          <p>光靠自然流量远远不够。我们设计了<strong>五大获客通道</strong>：景区联动（周边景点门票附赠优惠券）、酒店合作（客房放置宣传册和伴手礼）、旅行社纳入行程（作为必停站点）、工会采购（作为职工福利/会议礼品）、线上引流（抖音/快手本地生活推广）。每条渠道都有对应的转化机制和利益分配方案。</p>
+          <p><strong>五大获客通道：</strong>景区联动（门票附赠券）、酒店合作（客房宣传册）、旅行社纳入必停行程、工会采购（职工福利/会议礼品）、线上引流（抖音本地生活推广）。每条都有对应转化机制和利益分配方案。</p>
         </div>
 
-        <div class="solution-block">
-          <div class="sol-label">第五步：效益测算与可持续模型</div>
-          <p>我们为政府提供了完整的<strong>投入产出测算</strong>——建设成本、运营成本、预期收入（门票+零售+活动+租赁）、盈亏平衡点测算、三年财务预测。更重要的是，我们提出了一套<strong>"政府引导 + 企业运作 + 利益共享"</strong>的合作机制：政府提供场地和政策支持，专业团队负责日常运营，收益按约定比例分配。这让项目从一开始就具备自我造血能力，而不是单纯依赖财政输血。</p>
+        <div class="solution-block" style="margin-bottom:0;">
+          <div class="sol-label">第五步："政府引导 + 企业运作 + 利益共享"可持续模型</div>
+          <p style="margin-bottom:0;">完整投入产出测算（建设成本、运营成本、预期收入、盈亏平衡点、三年财务预测）。政府出场地和政策支持，专业团队负责日常运营，收益按约定比例分配——<strong>从建完就死到自我造血</strong>。</p>
         </div>
       </div>
 
