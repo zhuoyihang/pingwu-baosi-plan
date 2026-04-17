@@ -727,6 +727,56 @@
   }
   .solution-block p { font-size:14px !important; line-height:1.85 !important; color:var(--c-text) !important; }
 
+  /* 漏斗图 */
+  .funnel-wrap { max-width:720px; margin:24px auto 0; display:flex; flex-direction:column; align-items:center; gap:0; }
+  .funnel-layer { width:100%; border-radius:16px; color:#fff; padding:28px 32px;
+    box-shadow:0 6px 30px rgba(0,0,0,.12); transition:transform .3s ease,box-shadow .3s ease;
+  }
+  .funnel-layer:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,.18); }
+  .funnel-inner h3 { font-size:20px; margin-bottom:8px; letter-spacing:3px; opacity:.95; }
+  .funnel-inner p { font-size:15px; opacity:.9; line-height:1.5; margin:0 0 14px; letter-spacing:1px; }
+  .funnel-tags span {
+    display:inline-block; background:rgba(255,255,255,.2); border-radius:12px; padding:4px 14px;
+    font-size:13px; margin:3px 4px 3px 0; backdrop-filter:blur(2px);
+  }
+  .funnel-arrow {
+    width:100%; height:22px; position:relative;
+    background:linear-gradient(180deg,transparent 0%,rgba(139,69,19,.08) 50%,transparent 100%);
+  }
+  .funnel-arrow::after {
+    content:""; position:absolute; bottom:-2px; left:50%;
+    transform:translateX(-50%); border-left:10px solid transparent;
+    border-right:10px solid transparent; border-top:12px solid #c9a96e;
+  }
+
+  /* 漏斗三步驱动 */
+  .funnel-3step { display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:nowrap; }
+  .f3s-item { text-align:center; flex:1; min-width:0; }
+  .f3s-item strong { display:block; font-size:15px; margin-bottom:4px; }
+  .f3s-item small { font-size:11px; opacity:.85; white-space:nowrap; overflow:hidden;text-overflow:ellipsis;display:block; }
+  .f3s-divider { font-size:18px; opacity:.7; flex-shrink:0; }
+
+  /* 漏斗四列商业闭环 */
+  .funnel-4col { display:flex; justify-content:center; gap:12px; text-align:center; }
+  .funnel-4col > div { flex:1; min-width:0; }
+  .funnel-4col strong { display:block; font-size:15px; margin-bottom:4px; }
+  .funnel-4col small { font-size:11.5px; opacity:.85; }
+
+  /* 五边形能力图 */
+  .pentagon-section { margin-top:44px; text-align:center; }
+  .pentagon-title { font-size:20px; color:var(--c-primary); font-weight:800; margin-bottom:24px; letter-spacing:2px; }
+  .pentagon-wrap { max-width:500px; margin:0 auto; }
+  .pentagon-svg { width:100%; height:auto; filter:drop-shadow(0 4px 16px rgba(0,0,0,.06)); }
+  .pentagon-desc { margin-top:16px; font-size:14px; color:var(--c-text-light); line-height:1.7; }
+
+  @media (max-width:600px) {
+    .funnel-layer { padding:20px 18px; }
+    .funnel-3step { flex-direction:column; gap:6px; }
+    .f3s-divider { transform:rotate(90deg); }
+    .funnel-4col { flex-wrap:wrap; }
+    .funnel-4col > div { flex:0 0 45%; }
+  }
+
   @media (max-width: 768px) {
     .sol-flex-row, .sol-flex-row-rev { flex-direction: column; }
     .sol-flex-row > div[style*="flex:0"], .sol-flex-row-rev > div[style*="flex:0"] {
@@ -1229,57 +1279,110 @@
   </div>
 </div>
 
-<!-- ==================== 四、顶层构想 ==================== -->
+<!-- ==================== 四、顶层构想（漏斗图） ==================== -->
 <div class="section" style="background:var(--c-cream);">
   <div class="section-title"><span class="section-num">04</span>项目顶层构想</div>
 
-  <div class="framework-box">
-    <div class="fw-row">
-      <div class="fw-label">核心定位</div>
-      <div class="fw-content">
-        <strong>"深山故宫 · 大明美学圣地"</strong> —— 规避宗教敏感色彩，聚焦报恩寺独一无二的明代建筑艺术与宫廷美学价值，打造差异化、高审美、有温度的文化地标。<br>
-        <div class="fw-tags">
-          <span class="fw-tag">建筑地标</span>
-          <span class="fw-tag">美学高地</span>
-          <span class="fw-tag">研学基地</span>
-          <span class="fw-tag">网红打卡</span>
+  <!-- 漏斗图 -->
+  <div class="funnel-wrap">
+
+    <!-- 漏斗层1: 核心定位 -->
+    <div class="funnel-layer" style="background:linear-gradient(135deg,#8B0000,#c0392b);">
+      <div class="funnel-inner">
+        <h3>核心定位</h3>
+        <p>"深山故宫 · 大明美学圣地"</p>
+        <div class="funnel-tags">
+          <span>建筑地标</span><span>美学高地</span><span>研学基地</span><span>网红打卡</span>
         </div>
       </div>
     </div>
 
-    <div class="fw-row">
-      <div class="fw-label">驱动逻辑</div>
-      <div class="fw-content">
-        <strong>线上引爆 → 线下承载 → 活动续航</strong> 三步闭环：<br><br>
-        ▸ <strong>线上引爆：</strong>以抖音短视频为核心阵地，辅以小红书种草、微信生态深耕。策划"寻找报恩寺9999条龙""大明穿越指南"等系列内容话题，邀请头部文旅达人探访，快速建立全国级知名度和打卡欲望。<br><br>
-        ▸ <strong>线下承载：</strong>对报恩寺周边街区进行"修建如旧"改造，营造沉浸式明代美学街区。引入特色餐饮、精品民宿、文化零售等业态，让游客"来了能留、留了能花"。参考麓湖CPI岛的非标商业营造经验——自然融入、审美在线、业态多元。<br><br>
-        ▸ <strong>活动续航：</strong>四季不断档——春季"大明花朝节"、夏季"龙宫夜游会"、秋季"金丝楠木文化节"、冬季"报恩灯会"。配合非遗展演（白马藏族跳曹盖等），维持全年热度，吸引重复消费。
+    <!-- 箭头1 -->
+    <div class="funnel-arrow"></div>
+
+    <!-- 漏斗层2: 驱动逻辑 -->
+    <div class="funnel-layer" style="background:linear-gradient(135deg,#1565C0,#1976D2);width:82%;">
+      <div class="funnel-inner">
+        <h3>驱动逻辑</h3>
+        <div class="funnel-3step">
+          <div class="f3s-item"><strong>线上引爆</strong><small>抖音+小红书+微信矩阵<br>达人探访 / 内容种草</small></div>
+          <div class="f3s-divider">↓</div>
+          <div class="f3s-item"><strong>线下承载</strong><small>"修建如旧"街区改造<br>餐饮·民宿·零售业态</small></div>
+          <div class="f3s-divider">↓</div>
+          <div class="f3s-item"><strong>活动续航</strong><small>四季节庆不断档<br>花朝节·夜游会·灯会</small></div>
+        </div>
       </div>
     </div>
 
-    <div class="fw-row">
-      <div class="fw-label">商业闭环</div>
-      <div class="fw-content">
-        <strong>招商 → 运营 → 收益 → 联动</strong><br><br>
-        ▸ <strong>招商策略：</strong>设计有吸引力的入驻政策（免租期、装修补贴），依托丰火传媒在成都积累的优质餐饮和文创品牌资源，快速填充商业内容。<br><br>
-        ▸ <strong>收益模式：</strong>租金基础收益 + SaaS系统参与商户流水分成 + 文创产品销售 + 研学课程收入 + 节庆活动门票及衍生消费。<br><br>
-        ▸ <strong>区域联动：</strong>将报恩寺项目植入"九寨沟 — 平武 — 绵阳"黄金旅游线路，打造成为线路上的<strong>文化中转站</strong>和<strong>独立目的地</strong>，不再仅仅是"路过的地方"。
+    <!-- 箭头2 -->
+    <div class="funnel-arrow" style="width:82%;margin-left:auto;margin-right:auto;"></div>
+
+    <!-- 漏斗层3: 商业闭环 -->
+    <div class="funnel-layer" style="background:linear-gradient(135deg,#2E7D32,#43A047);width:66%;">
+      <div class="funnel-inner">
+        <h3>商业闭环</h3>
+        <div class="funnel-4col">
+          <div><strong>招商</strong><small>免租期+装修补贴</small></div>
+          <div><strong>运营</strong><small>SaaS化数据管理</small></div>
+          <div><strong>收益</strong><small>租金+流水分成+文创</small></div>
+          <div><strong>联动</strong><small>九寨-平武-绵阳线路</small></div>
+        </div>
       </div>
     </div>
 
-    <div class="fw-row">
-      <div class="fw-label">运营角色</div>
-      <div class="fw-content">
-        丰火传媒作为<strong>"专业运营与内容方"</strong>，核心价值在于：<br>
-        ✦ 从0到1的IP定位与故事体系构建<br>
-        ✦ 全案营销策划与全媒体矩阵运营<br>
-        ✦ 招商资源导入与商业业态管理<br>
-        ✦ 四季活动策划与执行保障<br>
-        ✦ 数据监测与持续优化迭代<br><br>
-        我们确保项目不仅是"开街即巅峰"，更是<strong>长期有活力、可持续运转</strong>的文化产业引擎。
-      </div>
+  </div><!-- end funnel -->
+
+  <!-- 五边形能力图 -->
+  <div class="pentagon-section">
+    <h4 class="pentagon-title">丰火传媒 —— 专业运营与内容方</h4>
+    <div class="pentagon-wrap">
+      <svg viewBox="0 0 400 380" class="pentagon-svg" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景五边形 -->
+        <polygon points="200,15 370,130 310,340 90,340 30,130"
+                 fill="none" stroke="#DAA520" stroke-width="1.5" stroke-dasharray="6,4" opacity=".5"/>
+        <!-- 填充区域 -->
+        <polygon points="200,50 330,140 285,315 115,315 70,140"
+                 fill="rgba(139,69,19,.06)" stroke="#8B4513" stroke-width="1"/>
+        <!-- 中心圆 -->
+        <circle cx="200" cy="200" r="45" fill="#8B0000" stroke="#FFD700" stroke-width="2"/>
+        <text x="200" y="195" text-anchor="middle" fill="#FFD700" font-size="14" font-weight="800">丰火</text>
+        <text x="200" y="212" text-anchor="middle" fill="#fff" font-size="12">传媒</text>
+
+        <!-- 顶点1: IP定位 (顶部) -->
+        <circle cx="200" cy="50" r="26" fill="#8B0000" stroke="#DAA520" stroke-width="1.5"/>
+        <text x="200" y="46" text-anchor="middle" fill="#FFD700" font-size="11" font-weight="800">IP定位</text>
+        <text x="200" y="58" text-anchor="middle" fill="#fff" font-size="9">故事构建</text>
+        <line x1="200" y1="76" x2="195" y2="155" stroke="#DAA520" stroke-width="1" opacity=".5"/>
+
+        <!-- 顶点2: 全案营销 (右上) -->
+        <circle cx="330" cy="140" r="26" fill="#1565C0" stroke="#DAA520" stroke-width="1.5"/>
+        <text x="330" y="136" text-anchor="middle" fill="#BBDEFB" font-size="11" font-weight="800">全案营销</text>
+        <text x="330" y="148" text-anchor="middle" fill="#fff" font-size="9">全媒体运营</text>
+        <line x1="304" y1="148" x2="240" y2="180" stroke="#DAA520" stroke-width="1" opacity=".5"/>
+
+        <!-- 顶点3: 招商管理 (右下) -->
+        <circle cx="285" cy="315" r="26" fill="#2E7D32" stroke="#DAA520" stroke-width="1.5"/>
+        <text x="285" y="311" text-anchor="middle" fill="#C8E6C9" font-size="11" font-weight="800">招商管理</text>
+        <text x="285" y="323" text-anchor="middle" fill="#fff" font-size="9">品牌导入</text>
+        <line x1="264" y1="297" x2="230" y2="235" stroke="#DAA520" stroke-width="1" opacity=".5"/>
+
+        <!-- 顶点4: 数据优化 (左下) -->
+        <circle cx="115" cy="315" r="26" fill="#E67E22" stroke="#DAA520" stroke-width="1.5"/>
+        <text x="115" y="311" text-anchor="middle" fill="#FDEBD0" font-size="11" font-weight="800">数据优化</text>
+        <text x="115" y="323" text-anchor="middle" fill="#fff" font-size="9">持续迭代</text>
+        <line x1="136" y1="297" x2="170" y2="235" stroke="#DAA520" stroke-width="1" opacity=".5"/>
+
+        <!-- 顶点5: 活动策划 (左上) -->
+        <circle cx="70" cy="140" r="26" fill="#8E44AD" stroke="#DAA520" stroke-width="1.5"/>
+        <text x="70" y="136" text-anchor="middle" fill="#E8DAEF" font-size="11" font-weight="800">活动策划</text>
+        <text x="70" y="148" text-anchor="middle" fill="#fff" font-size="9">四季执行</text>
+        <line x1="96" y1="148" x2="160" y2="180" stroke="#DAA520" stroke-width="1" opacity=".5"/>
+      </svg>
+
+      <p class="pentagon-desc">五大能力环环相扣，围绕中心持续运转，确保项目长期活力。</p>
     </div>
   </div>
+
 </div>
 
 <!-- ==================== 五、预期效益 ==================== -->
