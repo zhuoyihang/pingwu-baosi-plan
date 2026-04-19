@@ -25,6 +25,23 @@
     font-size: 16px;
   }
 
+  /* ===== 版权水印 ===== */
+  #wm-layer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  #wm-layer canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   /* 封面 */
   .cover {
     min-height: 100vh;
@@ -1603,6 +1620,87 @@
     <strong>丰火传媒愿做这个"点火的人"。</strong>
   </p>
 </div>
+
+<!-- ===== 全局版权水印 ===== -->
+<div id="wm-layer" aria-hidden="true"><canvas id="wm-canvas"></canvas></div>
+
+<script>
+(function() {
+  var TEXT1 = '四川丰火传媒';
+  var TEXT2 = '© 2025  CONFIDENTIAL';
+  var ANGLE = -28;   /* 倾斜角度（度） */
+  var OPACITY = 0.055; /* 透明度：低调但截图可见 */
+  var SPACING_X = 220; /* 水平间距 */
+  var SPACING_Y = 150; /* 垂直间距 */
+
+  function drawWatermark() {
+    var canvas = document.getElementById('wm-canvas');
+    if (!canvas) return;
+    var W = window.innerWidth;
+    var H = window.innerHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, W, H);
+
+    ctx.save();
+    ctx.globalAlpha = OPACITY;
+    ctx.font = 'bold 15px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillStyle = '#1a3a4a';
+
+    var rad = ANGLE * Math.PI / 180;
+    var cols = Math.ceil(W / SPACING_X) + 4;
+    var rows = Math.ceil(H / SPACING_Y) + 4;
+    var startX = -SPACING_X * 2;
+    var startY = -SPACING_Y * 2;
+
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var cx = startX + c * SPACING_X;
+        var cy = startY + r * SPACING_Y;
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(rad);
+        ctx.fillText(TEXT1, 0, 0);
+        ctx.font = '11px "PingFang SC","Microsoft YaHei",sans-serif';
+        ctx.fillText(TEXT2, 0, 18);
+        ctx.restore();
+        ctx.font = 'bold 15px "PingFang SC","Microsoft YaHei",sans-serif';
+      }
+    }
+    ctx.restore();
+  }
+
+  /* 首次绘制 */
+  drawWatermark();
+
+  /* 窗口缩放时重绘 */
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(drawWatermark, 100);
+  });
+
+  /* 防止水印层被 DevTools 隐藏后不恢复 */
+  setInterval(function() {
+    var el = document.getElementById('wm-layer');
+    if (!el) {
+      var d = document.createElement('div');
+      d.id = 'wm-layer';
+      d.setAttribute('aria-hidden', 'true');
+      d.innerHTML = '<canvas id="wm-canvas"></canvas>';
+      document.body.appendChild(d);
+      setTimeout(drawWatermark, 0);
+    } else if (el.style.display === 'none' || el.style.visibility === 'hidden' || el.style.opacity === '0') {
+      el.style.display = '';
+      el.style.visibility = '';
+      el.style.opacity = '';
+      drawWatermark();
+    }
+  }, 1500);
+
+})();
+</script>
 
 </body>
 </html>
