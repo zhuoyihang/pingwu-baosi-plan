@@ -17,7 +17,6 @@
     --c-white: #fff;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { position: relative; }
   body {
     font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "STSong", serif;
     background: var(--c-light);
@@ -26,17 +25,18 @@
     font-size: 16px;
   }
 
-  /* ===== 版权水印 - 全文档铺满 ===== */
+  /* ===== 版权水印 - CSS背景平铺（天然无死角）===== */
   #wm-layer {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
+    top: -50vh;
+    left: -50vw;
+    width: 200vw;
+    height: 300vh;
     pointer-events: none;
     z-index: 9999;
     user-select: none;
     -webkit-user-select: none;
-    overflow: visible;
+    overflow: hidden;
   }
   #wm-layer canvas {
     display: block;
@@ -1636,23 +1636,15 @@
   var SPACING_X = 220;       /* 水平间距(px) */
   var SPACING_Y = 150;       /* 垂直间距(px) */
 
-  function getDocSize() {
-    return {
-      W: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, window.innerWidth),
-      H: Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, window.innerHeight)
-    };
-  }
-
   function drawWatermark() {
     var layer  = document.getElementById('wm-layer');
     var canvas = document.getElementById('wm-canvas');
     if (!layer || !canvas) return;
 
-    var sz   = getDocSize();
-    var W    = sz.W;
-    var H    = sz.H;
+    /* 用超大尺寸：200vw x 300vh，从 -50vh/-50vw 开始，四向溢出保证无死角 */
+    var W = Math.ceil(window.innerWidth * 2);
+    var H = Math.ceil(window.innerHeight * 3);
 
-    /* canvas 物理像素 = 全文档尺寸 */
     canvas.width  = W;
     canvas.height = H;
     canvas.style.width  = W + 'px';
@@ -1665,10 +1657,11 @@
     ctx.globalAlpha = OPACITY;
 
     var rad    = ANGLE * Math.PI / 180;
-    var cols   = Math.ceil(W / SPACING_X) + 8;
-    var rows   = Math.ceil(H / SPACING_Y) + 8;
-    var startX = -SPACING_X * 4;
-    var startY = -SPACING_Y * 4;
+    var cols   = Math.ceil(W / SPACING_X) + 4;
+    var rows   = Math.ceil(H / SPACING_Y) + 4;
+    /* 起点留负边距，确保左上角也有水印 */
+    var startX = -SPACING_X;
+    var startY = -SPACING_Y;
 
     for (var r = 0; r < rows; r++) {
       for (var c = 0; c < cols; c++) {
@@ -1677,15 +1670,12 @@
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(rad);
-        /* 行1: 品牌名（单行，不换行）*/
         ctx.font      = 'bold 15px "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif';
         ctx.fillStyle = '#1a3a4a';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'alphabetic';
         ctx.fillText(TEXT1, 0, 0);
-        /* 行2: 版权声明（单行，不换行）*/
         ctx.font      = '11px "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif';
-        ctx.fillStyle = '#1a3a4a';
         ctx.fillText(TEXT2, 0, 18);
         ctx.restore();
       }
@@ -1694,38 +1684,31 @@
   }
 
   /* ===== 触发时机 ===== */
-  /* DOM 就绪 */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', drawWatermark);
   } else {
     drawWatermark();
   }
-
-  /* 所有资源加载完成（图片等影响高度） */
   window.addEventListener('load', function() { setTimeout(drawWatermark, 300); });
 
-  /* 窗口 resize */
   var _rt;
-  window.addEventListener('resize', function() { clearTimeout(_rt); _rt = setTimeout(drawWatermark, 120); });
-
-  /* DOM 变化（懒加载/动态内容） */
+  window.addEventListener('resize', function() { clearTimeout(_rt); _rt = setTimeout(drawWatermark, 100); });
   if (typeof MutationObserver !== 'undefined') {
     new MutationObserver(function() { clearTimeout(_rt); _rt = setTimeout(drawWatermark, 250); })
       .observe(document.body, { childList: true, subtree: true });
   }
 
-  /* 防止 DevTools 删除/隐藏水印层 */
+  /* 防DevTools隐藏 */
   setInterval(function() {
     var el = document.getElementById('wm-layer');
     if (!el) {
       var d = document.createElement('div'); d.id = 'wm-layer'; d.setAttribute('aria-hidden','true');
-      var cv = document.createElement('canvas'); cv.id = 'wm-canvas'; d.appendChild(cv);
-      document.body.appendChild(d);
+      d.innerHTML='<canvas id="wm-canvas"></canvas>'; document.body.appendChild(d);
       setTimeout(drawWatermark, 50);
     } else {
-      var s = el.style;
-      if (s.display==='none'||s.visibility==='hidden'||s.opacity==='0'||el.parentNode!==document.body){
-        s.display=''; s.visibility=''; s.opacity='';
+      var s=el.style;
+      if(s.display==='none'||s.visibility==='hidden'||s.opacity==='0'||el.parentNode!==document.body){
+        s.display='';s.visibility='';s.opacity='';
         if(el.parentNode!==document.body)document.body.appendChild(el);
         drawWatermark();
       }
