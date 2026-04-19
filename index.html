@@ -17,6 +17,7 @@
     --c-white: #fff;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { position: relative; }
   body {
     font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "STSong", serif;
     background: var(--c-light);
@@ -25,22 +26,23 @@
     font-size: 16px;
   }
 
-  /* ===== 版权水印 ===== */
+  /* ===== 版权水印 - 全文档铺满 ===== */
   #wm-layer {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
     pointer-events: none;
     z-index: 9999;
-    overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
+    overflow: visible;
   }
   #wm-layer canvas {
     display: block;
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
   }
 
   /* 封面 */
@@ -1627,42 +1629,46 @@
 
 <script>
 (function() {
-  var TEXT1 = '四川丰火传媒';
-  var TEXT2 = '© 2025  CONFIDENTIAL';
-  var ANGLE   = -28;    /* 倾斜角度（度） */
-  var OPACITY = 0.058;  /* 透明度：截图可见但不喧宾夺主 */
-  var SPACING_X = 220;  /* 水平间距 */
-  var SPACING_Y = 150;  /* 垂直间距 */
+  var TEXT1     = '四川丰火传媒';
+  var TEXT2     = '\u00A9 2025 CONFIDENTIAL';
+  var ANGLE     = -28;       /* 倾斜角度 */
+  var OPACITY   = 0.058;     /* 透明度 */
+  var SPACING_X = 220;       /* 水平间距(px) */
+  var SPACING_Y = 150;       /* 垂直间距(px) */
 
-  /* body 必须是水印层的定位父级 */
-  document.body.style.position = 'relative';
+  function getDocSize() {
+    return {
+      W: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, window.innerWidth),
+      H: Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, window.innerHeight)
+    };
+  }
 
   function drawWatermark() {
     var layer  = document.getElementById('wm-layer');
     var canvas = document.getElementById('wm-canvas');
     if (!layer || !canvas) return;
 
-    /* 全文档宽高 */
-    var W = Math.max(document.body.scrollWidth,  document.documentElement.scrollWidth,  window.innerWidth);
-    var H = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
+    var sz   = getDocSize();
+    var W    = sz.W;
+    var H    = sz.H;
 
-    /* 同步 layer 尺寸 */
-    layer.style.width  = W + 'px';
-    layer.style.height = H + 'px';
-
+    /* canvas 物理像素 = 全文档尺寸 */
     canvas.width  = W;
     canvas.height = H;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
 
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, W, H);
+
     ctx.save();
     ctx.globalAlpha = OPACITY;
 
-    var rad  = ANGLE * Math.PI / 180;
-    var cols = Math.ceil(W / SPACING_X) + 6;
-    var rows = Math.ceil(H / SPACING_Y) + 6;
-    var startX = -SPACING_X * 3;
-    var startY = -SPACING_Y * 3;
+    var rad    = ANGLE * Math.PI / 180;
+    var cols   = Math.ceil(W / SPACING_X) + 8;
+    var rows   = Math.ceil(H / SPACING_Y) + 8;
+    var startX = -SPACING_X * 4;
+    var startY = -SPACING_Y * 4;
 
     for (var r = 0; r < rows; r++) {
       for (var c = 0; c < cols; c++) {
@@ -1671,14 +1677,14 @@
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(rad);
-        /* 文字1：主品牌名 */
-        ctx.font = 'bold 15px "PingFang SC","Microsoft YaHei",sans-serif';
+        /* 行1: 品牌名（单行，不换行）*/
+        ctx.font      = 'bold 15px "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif';
         ctx.fillStyle = '#1a3a4a';
+        ctx.textAlign = 'left';
         ctx.textBaseline = 'alphabetic';
-        /* 强制单行：canvas本身不会换行，确保不带\n */
         ctx.fillText(TEXT1, 0, 0);
-        /* 文字2：版权声明 */
-        ctx.font = '11px "PingFang SC","Microsoft YaHei",sans-serif';
+        /* 行2: 版权声明（单行，不换行）*/
+        ctx.font      = '11px "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif';
         ctx.fillStyle = '#1a3a4a';
         ctx.fillText(TEXT2, 0, 18);
         ctx.restore();
@@ -1687,47 +1693,40 @@
     ctx.restore();
   }
 
-  /* 首次绘制（DOM ready后） */
+  /* ===== 触发时机 ===== */
+  /* DOM 就绪 */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', drawWatermark);
   } else {
     drawWatermark();
   }
-  /* 图片等资源加载完成后，页面高度可能变化，再绘一次 */
-  window.addEventListener('load', drawWatermark);
 
-  /* resize 时重绘 */
-  var resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(drawWatermark, 120);
-  });
+  /* 所有资源加载完成（图片等影响高度） */
+  window.addEventListener('load', function() { setTimeout(drawWatermark, 300); });
 
-  /* MutationObserver：页面内容动态变化时重绘（懒加载图片等） */
-  if (window.MutationObserver) {
-    var mo = new MutationObserver(function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(drawWatermark, 200);
-    });
-    mo.observe(document.body, { childList: true, subtree: true, attributes: false });
+  /* 窗口 resize */
+  var _rt;
+  window.addEventListener('resize', function() { clearTimeout(_rt); _rt = setTimeout(drawWatermark, 120); });
+
+  /* DOM 变化（懒加载/动态内容） */
+  if (typeof MutationObserver !== 'undefined') {
+    new MutationObserver(function() { clearTimeout(_rt); _rt = setTimeout(drawWatermark, 250); })
+      .observe(document.body, { childList: true, subtree: true });
   }
 
-  /* 防DevTools隐藏层 */
+  /* 防止 DevTools 删除/隐藏水印层 */
   setInterval(function() {
     var el = document.getElementById('wm-layer');
     if (!el) {
-      var d = document.createElement('div');
-      d.id = 'wm-layer';
-      d.setAttribute('aria-hidden', 'true');
-      var cv = document.createElement('canvas');
-      cv.id = 'wm-canvas';
-      d.appendChild(cv);
+      var d = document.createElement('div'); d.id = 'wm-layer'; d.setAttribute('aria-hidden','true');
+      var cv = document.createElement('canvas'); cv.id = 'wm-canvas'; d.appendChild(cv);
       document.body.appendChild(d);
-      setTimeout(drawWatermark, 0);
+      setTimeout(drawWatermark, 50);
     } else {
       var s = el.style;
-      if (s.display === 'none' || s.visibility === 'hidden' || s.opacity === '0') {
-        s.display = ''; s.visibility = ''; s.opacity = '';
+      if (s.display==='none'||s.visibility==='hidden'||s.opacity==='0'||el.parentNode!==document.body){
+        s.display=''; s.visibility=''; s.opacity='';
+        if(el.parentNode!==document.body)document.body.appendChild(el);
         drawWatermark();
       }
     }
